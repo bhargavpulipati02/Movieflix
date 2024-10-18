@@ -34,8 +34,6 @@ public class Movie {
     @CollectionTable(name="movie_cast")
     private Set<String> movieCast;
 
-
-    @NotBlank(message = "Please Provide MovieYear")
     private Integer movieYear;
 
     @Column(nullable=false,length=255)

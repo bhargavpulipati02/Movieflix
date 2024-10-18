@@ -13,6 +13,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 public class MovieDto {
+
     private Integer movieId;
 
     @NotBlank(message = "Please Provide Movie title")
@@ -37,6 +38,6 @@ public class MovieDto {
     private String moviePoster;
 
     @NotBlank(message = "Please Provide url for poster")
-    private String PosterUrl;
+    private String posterUrl;
 
 }

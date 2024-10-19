@@ -3,8 +3,10 @@ package org.project.movieflix.Controller;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.project.movieflix.Dto.MovieDto;
+import org.project.movieflix.Dto.MoviePageResponse;
 import org.project.movieflix.Exceptions.FileEmptyException;
 import org.project.movieflix.Service.MovieService;
+import org.project.movieflix.utils.AppConstant;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -40,8 +42,30 @@ public class MovieController {
 
     }
     @GetMapping("allmovies")
-    public ResponseEntity<List<MovieDto>> listAllMoviesHandler() {
+    public ResponseEntity<List<MovieDto>> getMovies(){
         return new ResponseEntity<>(movieService.getAllMovies(), HttpStatus.OK);
+
+    }
+//requestparam is ?
+    @GetMapping("allmoviespagination")
+    public ResponseEntity<MoviePageResponse> getMoviesWithPagination(
+            @RequestParam(defaultValue = AppConstant.PAGE_NUMBER,required = false) Integer pageNo,
+            @RequestParam(defaultValue = AppConstant.PAGE_SIZE,required = false) Integer pageSize
+
+    ) {
+        return ResponseEntity.ok(movieService.getAllMoviesWithPagination(pageNo,pageSize));
+
+    }
+
+
+    @GetMapping("allmoviespagesort")
+    public ResponseEntity<MoviePageResponse> getMoviesWithPaginationAndSorting(
+            @RequestParam(defaultValue = AppConstant.PAGE_NUMBER,required = false) Integer pageNo,
+            @RequestParam(defaultValue = AppConstant.PAGE_SIZE,required = false) Integer pageSize,
+            @RequestParam(defaultValue = AppConstant.SORT_BY,required = false) String sortBy,
+            @RequestParam(defaultValue = AppConstant.SORT_ORDER,required = false) String dir
+    ) {
+        return ResponseEntity.ok(movieService.getAllMoviesWithPaginationAndSorting(pageNo,pageSize,sortBy,dir));
 
     }
 

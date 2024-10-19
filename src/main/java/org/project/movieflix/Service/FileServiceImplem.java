@@ -18,6 +18,7 @@ public class FileServiceImplem implements FileService {
     @Override
 //    path in server to store
     public String UploadFile(String path, MultipartFile file) throws IOException {
+
 //        get name of the file
 //        client system name
         String fileName = file.getOriginalFilename();
@@ -32,7 +33,7 @@ public class FileServiceImplem implements FileService {
 
 //        copy the file or upload file to path
 //        if same image path exists replace it
-        Files.copy(file.getInputStream(), Paths.get(filePath), StandardCopyOption.REPLACE_EXISTING);
+        Files.copy(file.getInputStream(), Paths.get(filePath));
 
         return fileName;
 
@@ -44,4 +45,7 @@ public class FileServiceImplem implements FileService {
         String filePath =path + File.separator+fileName;
         return new FileInputStream(filePath);
     }
+
+
+
 }

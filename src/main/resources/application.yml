@@ -1,0 +1,34 @@
+spring:
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: "bhargavpulipati20@gmail.com"
+    password: "qrtf oigw eeoz jqft"
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+
+  application:
+    name: Movieflix
+  datasource:
+    url: jdbc:mysql://localhost:3306/movieflix
+    username: root
+    password: 1234
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+    hibernate:
+      ddl-auto: update
+
+project:
+  poster: posters/
+
+base:
+  url: "http://localhost:8080"
+
+
